@@ -357,7 +357,7 @@ class mi_factura_detallada extends fs_controller {
               'page_from' => __CLASS__,
               'page_to' => 'ventas_factura',
               'type' => 'pdf',
-              'text' => '<span class="glyphicon glyphicon-check"></span>&nbsp; Imprimir Factura',
+              'text' => 'Imprimir FACTURA',
               'params' => ''
           ),
           array(
@@ -365,7 +365,7 @@ class mi_factura_detallada extends fs_controller {
               'page_from' => __CLASS__,
               'page_to' => 'ventas_factura',
               'type' => 'email',
-              'text' => 'Enviar la factura',
+              'text' => 'Enviar la FACTURA por e-mail',
               'params' => '&factura=TRUE&tipo=detallada'
           )
       );
