@@ -216,40 +216,40 @@ class mi_factura_detallada extends fs_controller {
          $pdf_doc->fdf_lineasiva = $lineas_iva;
       } else {
          $filaiva = array();
-         $totaliva = 0;
+         $total = 0;
          $i = 0;
          foreach ($lineas_iva as $li) {
             $i++;
             $filaiva[$i][0] = ($li->iva) ? FS_IVA . $li->iva : '';
             $etemp = round($li->neto,2);
             $filaiva[$i][1] = ($etemp) ? $this->ckeckEuro($etemp) : ''; 
-            $totaliva=$totaliva+$etemp;
+            $total=$total+$etemp;
             $filaiva[$i][2] = ($li->iva) ? $li->iva . "%" : '';
             $etemp = round($li->totaliva,2);
             $filaiva[$i][3] = ($etemp) ? $this->ckeckEuro($etemp) : ''; 
-            $totaliva=$totaliva+$etemp;
+            $total=$total+$etemp;
             $filaiva[$i][4] = ($li->recargo) ? $li->recargo . "%" : '';
             $etemp = round($li->totalrecargo,2);
             $filaiva[$i][5] = ($etemp) ? $this->ckeckEuro($etemp) : ''; 
-            $totaliva=$totaliva+$etemp;
+            $total=$total+$etemp;
             $filaiva[$i][6] = ''; //// POR CREARRRRRR
             $filaiva[$i][7] = ''; //// POR CREARRRRRR
             $etemp = round($li->totallinea,2);
             $filaiva[$i][8] = ($etemp) ? $this->ckeckEuro($etemp) : ''; 
-            $totaliva=$totaliva+$etemp;
+            $total=$total+$etemp;
          }
 
          if ($filaiva) {
             $filaiva[1][6] = $this->factura->irpf . '%';
             $filaiva[1][7] = $this->ckeckEuro(0 - $this->factura->totalirpf);
-            $totaliva=$totaliva-$etemp;
+            $total=$total-$etemp;
          }
 
          $pdf_doc->fdf_lineasiva = $filaiva;
       }
 
       // Total factura numerico
-      $etemp = round($totaliva,2);
+      $etemp = round($total,2);
       $pdf_doc->fdf_numtotal = $this->ckeckEuro($etemp);
 
       // Total factura numeros a texto
