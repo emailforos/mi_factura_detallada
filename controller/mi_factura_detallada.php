@@ -212,6 +212,7 @@ class mi_factura_detallada extends fs_controller {
       /// Definimos todos los datos del PIE de la factura
       /// Lineas de IVA
       $lineas_iva = $this->factura->get_lineas_iva();
+      $totallineas = 0;
       if (count($lineas_iva) > 3) {
          $pdf_doc->fdf_lineasiva = $lineas_iva;
       } else {
@@ -232,24 +233,26 @@ class mi_factura_detallada extends fs_controller {
             $etemp = round($li->totalrecargo,2);
             $filaiva[$i][5] = ($etemp) ? $this->ckeckEuro($etemp) : ''; 
             $total=$total+$etemp;
-            $filaiva[$i][6] = ''; //// POR CREARRRRRR
-            $filaiva[$i][7] = ''; //// POR CREARRRRRR
-            $etemp = round($li->totallinea,2);
-            $filaiva[$i][8] = ($etemp) ? $this->ckeckEuro($etemp) : ''; 
-            $total=$total+$etemp;
-         }
-
-         if ($filaiva) {
-            $filaiva[1][6] = $this->factura->irpf . '%';
-            $filaiva[1][7] = $this->ckeckEuro(0 - $this->factura->totalirpf);
-            $total=$total-$etemp;
+            /* Revision 11.11.2016*/
+            if ($i==1){
+                $filaiva[1][6] = $this->factura->irpf . '%';
+                $etemp = round(0 - $this->factura->totalirpf,2);
+                $filaiva[1][7] = $this->ckeckEuro($etemp);
+                $total=$total+$etemp;
+            } else {
+                $filaiva[$i][6] = ''; //// POR CREARRRRRR
+                $filaiva[$i][7] = ''; //// POR CREARRRRRR
+            }
+            //$etemp = round($li->totallinea,2);
+            $filaiva[$i][8] = ($total/*$etemp*/) ? $this->ckeckEuro($total/*$etemp*/) : ''; 
+            $totallineas=$totallineas+$total;
          }
 
          $pdf_doc->fdf_lineasiva = $filaiva;
       }
 
       // Total factura numerico
-      $etemp = round($total,2);
+      $etemp = round($totallineas,2);
       $pdf_doc->fdf_numtotal = $this->ckeckEuro($etemp);
 
       // Total factura numeros a texto
