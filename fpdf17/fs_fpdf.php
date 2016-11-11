@@ -189,7 +189,7 @@ class PDF_MC_Table extends FPDF {
             // Si existen Incluimos las Observaciones
             if ($this->fdf_observaciones != '')
             {
-                $this->addObservaciones(substr($this->fdf_observaciones, 0, 150));
+                $this->addObservaciones(substr($this->fdf_observaciones, 0, 250));
             }
 
             // Lineas de Impuestos
@@ -724,10 +724,6 @@ class PDF_MC_Table extends FPDF {
     // Incluir Observaciones	
     function addObservaciones($observa)
     {
-        /*$this->SetFont( "Arial", "I", 8);
-        $length = $this->GetStringWidth( "Observaciones: " . $observa );
-        $this->SetXY( 10, $this->h - 37.5 );
-        $this->Cell($length,4, "Observaciones: " . $observa);*/
         $this->SetFont( "Arial", "B", 8);
         $length = $this->GetStringWidth("Observaciones: " . $observa);
         $this->SetXY( 10, 250/*$this->h - 37.5*/ );
