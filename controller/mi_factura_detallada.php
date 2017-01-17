@@ -280,7 +280,57 @@ class mi_factura_detallada extends fs_controller {
                // $observa = null; // No mostrar mensaje de error
                $observa = "\n";
             }
-            if($lineas[$i]->referencia)
+            if($lineas[$i]->referencia){
+                $referencia = $lineas[$i]->referencia;
+            }else {
+                $referencia = '';
+            }
+            if( !$lineas[$i]->mostrar_cantidad ){
+                $cantidad = '';
+            } else {
+                    $cantidad = $lineas[$i]->cantidad;
+            }
+            if( !$lineas[$i]->mostrar_precio )
+            {
+               $pvpunitario = '';
+               $dtopor = '';
+               $pneto = '';
+               $pvptotal = '';
+            } else {
+               $pvpunitario = $this->ckeckEuro($lineas[$i]->pvpunitario);
+               $dtopor = $this->show_numero($lineas[$i]->dtopor, 2) /*. "%"*/;
+               $pneto = $this->ckeckEuro(($lineas[$i]->pvpunitario)*((100-$lineas[$i]->dtopor)/100));
+               $pvptotal = $this->ckeckEuro($lineas[$i]->pvptotal);
+            }
+            if ($ealb != utf8_decode($lineas[$i]->albaran_codigo())){
+                if ($lineas[$i]->albaran_codigo()== NULL){
+                    $nalb = "S/N ";
+                } else {
+                    $nalb = utf8_decode($lineas[$i]->albaran_codigo());
+                }
+                $ealb = utf8_decode($lineas[$i]->albaran_codigo());
+                $lafila = array(
+                '0' => "\n" . utf8_decode($referencia),
+                '1' => "Alb.: " . $nalb . "   - Su pedido: " . $this->factura->numero2 . "\n" . utf8_decode($lineas[$i]->descripcion) . $observa,
+                '2' => "\n" . utf8_decode($cantidad),
+                '3' => "\n" . $pvpunitario,
+                '4' => "\n" . utf8_decode($dtopor),
+                '5' => "\n" . $pneto,
+                '6' => "\n" . $pvptotal,
+                );
+            }
+            else{
+                $lafila = array(
+                '0' => utf8_decode($referencia),
+                '1' => utf8_decode($lineas[$i]->descripcion) . $observa,
+                '2' => utf8_decode($cantidad),
+                '3' => $pvpunitario,
+                '4' => utf8_decode($dtopor),
+                '5' => $pneto,
+                '6' => $pvptotal,
+                );
+            }
+            /*if($lineas[$i]->referencia)
             {
                 if ($ealb != utf8_decode($lineas[$i]->albaran_codigo())){
                     if ($lineas[$i]->albaran_codigo()== NULL){
@@ -329,7 +379,7 @@ class mi_factura_detallada extends fs_controller {
                 {
                     $lafila = array(
                     '0' => "",
-                    '1' => utf8_decode(strtoupper($lineas[$i]->descripcion)) . $observa ,
+                    '1' => utf8_decode(($lineas[$i]->descripcion)) . $observa ,
                     '2' => utf8_decode($lineas[$i]->cantidad),
                     '3' => $this->ckeckEuro($lineas[$i]->pvpunitario),
                     '4' => utf8_decode($this->show_numero($lineas[$i]->dtopor, 0) . " %"),
@@ -338,7 +388,7 @@ class mi_factura_detallada extends fs_controller {
                     //'6' => $this->ckeckEuro($lineas[$i]->total_iva())
                     );
                 }
-            }
+            }*/
             $pdf_doc->Row($lafila, '1'); // Row(array, Descripcion del Articulo -- ultimo valor a imprimir)
          }
          $pdf_doc->piepagina = true;
