@@ -263,8 +263,7 @@ class mi_factura_detallada extends fs_controller {
 
       // Lineas de la Factura
       //$lineas = $this->factura->get_lineas();
-     
-          
+               
       if ($lineas) {
          $neto = 0;
          $ealb = "INICIO";
