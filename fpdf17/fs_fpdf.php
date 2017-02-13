@@ -137,6 +137,9 @@ class PDF_MC_Table extends FPDF {
 
         // Forma de Pago de la Factura
         $this->addPago($this->fdf_epago);
+          
+        // Agencia del envío
+        $this->addAgencia(utf8_decode($this->fdf_agencia));
 
         // Divisa de la Factura
         //$this->addDivisa(utf8_decode($this->fdf_divisa));
@@ -726,9 +729,9 @@ class PDF_MC_Table extends FPDF {
     {
         $this->SetFont( "Arial", "B", 8);
         $length = $this->GetStringWidth("Observaciones: " . $observa);
-        $this->SetXY( 10, 250/*$this->h - 37.5*/ );
+        $this->SetXY( 10, 258/*$this->h - 37.5*/ );
         $this->Cell($length,0, "Observaciones:");
-        $this->SetXY( 10, 253/*$this->h - 37.5*/ );
+        $this->SetXY( 10, 260/*$this->h - 37.5*/ );
         $this->SetFillColor(230,230,230);
         $this->SetFont( "Arial", "I", 8);
         $this->MultiCell(90,4, $observa,'0','L','true');
@@ -1022,6 +1025,31 @@ class PDF_MC_Table extends FPDF {
     }
 
     // END FUNCTION	
+    
+    // Añadir agencia //
+    function addAgencia($agen)
+    {
+        $y1  = 246;
+        $x1  = 10;
+        $x2  = $x1;
+        $y2  = $y1+5;
+        $mid = $y1 + (($y2-$y1) / 2);
+        if ($this->fdf_tipodocumento == 'Proforma Invoice' OR $this->fdf_tipodocumento == 'Quotation' OR $this->fdf_tipodocumento == 'Purchase Order'){
+            $texte  = 'Transport terms: ' . $agen;    
+        }
+        else if ($this->fdf_tipodocumento == 'Pedido de Compra' OR $this->fdf_tipodocumento == 'Purchase Order')
+        {
+            $texte  = '' . $agen;  //Mientras no esté implementado en compras -> En blanco
+        } 
+        else
+        {        
+	  $texte  = 'Agencia: ' . $agen;    
+        }
+        $this->SetXY($x1,$y2/*$h-41,5*/);
+        $this->SetFont( "Arial","B",9);
+        $this->Cell(0,5,$texte,0,0,'L');
+    }
+    
 }
 
 ?>
