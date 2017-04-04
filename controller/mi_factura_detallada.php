@@ -50,7 +50,7 @@ class mi_factura_detallada extends fs_controller
    public $factura;
    public $idioma;
    public $impresion;
-
+  
    public function __construct()
    {
       parent::__construct(__CLASS__, 'Factura Detallada', 'ventas', FALSE, FALSE);
@@ -270,7 +270,8 @@ class mi_factura_detallada extends fs_controller
       
       //Agencia transporte
       $agencia = new agencia_transporte();
-      $eagencia = $agencia->get($this->albaran->envio_codtrans);
+      $eagencia = $agencia->get($this->factura->envio_codtrans);
+      //var_dump($eagencia); exit;
       if ($eagencia){
           $pdf_doc->fdf_agencia = $eagencia->nombre;
       } else {
@@ -733,6 +734,9 @@ class mi_factura_detallada extends fs_controller
                foreach($cbc0->all_from_cliente($this->factura->codcliente) as $cbc)
                {
                   $tmp_textopago = "Domiciliado en: ";
+                  if ($cbc->descripcion){
+                      $texto_pago[] = $cbc->descripcion;
+                  }
                   if($cbc->iban)
                   {
                      $texto_pago[] = $tmp_textopago . $cbc->iban(TRUE);
@@ -756,6 +760,9 @@ class mi_factura_detallada extends fs_controller
                $cuenta_banco = $cb0->get($forma_pago->codcuenta);
                if($cuenta_banco)
                {
+                  if ($cuenta_banco->descripcion){
+                      $texto_pago[] = $cuenta_banco->descripcion;
+                  }
                   if($cuenta_banco->iban)
                   {
                      $texto_pago[] = "IBAN: " . $cuenta_banco->iban(TRUE);

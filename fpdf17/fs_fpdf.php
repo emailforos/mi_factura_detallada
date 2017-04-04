@@ -658,12 +658,12 @@ class PDF_MC_Table extends FPDF {
         $r1 = 110;
         $r2 = $r1 + 90;
         $y1 = 250;
-        $y2 = $y1 + 23;
+        $y2 = $y1 + 28;
         if ($numlineas < 3)
         {
                 $r1 = 150;
                 $r2 = $r1 + 50;
-                $y1 = 75;
+                $y1 = 250;
                 $y2 = $y1 + 15;
         }
         $mid = $y1 + (($y2 - $y1) / 2);
