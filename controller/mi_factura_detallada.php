@@ -599,7 +599,7 @@ class mi_factura_detallada extends fs_controller
          $fsext->from = __CLASS__;
          $fsext->to = 'ventas_factura';
          $fsext->type = 'pdf';
-         $fsext->text = '<span class="glyphicon glyphicon-print"></span>&nbsp; Imprimir FACTURA ' . $idi->codidioma;
+         $fsext->text = '<span class="glyphicon glyphicon-check"></span>&nbsp; Imprimir FACTURA ' . $idi->codidioma;
          $fsext->params = '&codidioma=' . $idi->codidioma;
          
          if($idi->activo)
@@ -616,7 +616,7 @@ class mi_factura_detallada extends fs_controller
          $fsext2->from = __CLASS__;
          $fsext2->to = 'ventas_factura';
          $fsext2->type = 'email';
-         $fsext2->text = 'Enviar la FACTURA por e-mail ' . $idi->codidioma;
+         $fsext2->text = 'Enviar la FACTURA ' . $idi->codidioma;
          $fsext2->params = '&codidioma=' . $idi->codidioma;
          
          if($idi->activo)
@@ -678,7 +678,11 @@ class mi_factura_detallada extends fs_controller
 
             if($doc == 'factura')
             {
-               $mail->Subject = $this->empresa->nombre . ': Su factura ' . $this->factura->codigo;
+                if ($this->factura->numero2 != NULL){
+                    $mail->Subject = $this->empresa->nombre . ': Su factura ' . $this->factura->codigo . ' de su pedido' . $this->factura->numero2;
+                } else {
+                $mail->Subject = $this->empresa->nombre . ': Su factura ' . $this->factura->codigo;
+                }
             }
             $mail->AltBody = $_POST['mensaje'];
             $mail->msgHTML(nl2br($_POST['mensaje']));
