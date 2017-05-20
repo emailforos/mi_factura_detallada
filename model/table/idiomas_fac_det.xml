@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    Document   : idiomas_fac_det.xml
+    Description:
+        Estructura de la tabla idiomas_fac_det.
+-->
+<tabla>
+    <columna>
+      <nombre>codidioma</nombre>
+      <tipo>character varying(10)</tipo>
+      <nulo>NO</nulo>
+   </columna>
+   <columna>
+      <nombre>nombre</nombre>
+      <tipo>character varying(100)</tipo>
+   </columna>
+   <columna>
+      <nombre>activo</nombre>
+      <tipo>boolean</tipo>
+      <defecto>true</defecto>
+   </columna>
+   <columna>
+      <nombre>telefono</nombre>
+      <tipo>character varying(100)</tipo>
+      <defecto>'teléfono'::character varying</defecto>
+   </columna>
+   <columna>
+      <nombre>fax</nombre>
+      <tipo>character varying(100)</tipo>
+      <defecto>'fax'::character varying</defecto>
+   </columna>
+   <columna>
+      <nombre>email</nombre>
+      <tipo>character varying(100)</tipo>
+      <defecto>'email'::character varying</defecto>
+   </columna>
+   <columna>
+      <nombre>web</nombre>
+      <tipo>character varying(100)</tipo>
+      <defecto>'web'::character varying</defecto>
+   </columna>
+   <columna>
+      <nombre>factura</nombre>
+      <tipo>character varying(100)</tipo>
+      <defecto>'factura'::character varying</defecto>
+   </columna>
+   <columna>
+      <nombre>albaran</nombre>
+      <tipo>character varying(100)</tipo>
+      <defecto>'albarán'::character varying</defecto>
+   </columna>
+   <columna>
+      <nombre>pedido</nombre>
+      <tipo>character varying(100)</tipo>
+      <defecto>'pedido'::character varying</defecto>
+   </columna>
+   <columna>
+      <nombre>pagina</nombre>
+      <tipo>character varying(100)</tipo>
+      <defecto>'página'::character varying</defecto>
+   </columna>
+   <columna>
+      <nombre>fecha</nombre>
+      <tipo>character varying(100)</tipo>
+      <defecto>'fecha'::character varying</defecto>
+   </columna>
+   <columna>
+      <nombre>num_cliente</nombre>
+      <tipo>character varying(100)</tipo>
+      <defecto>'nº de cliente'::character varying</defecto>
+   </columna>
+   <columna>
+      <nombre>cliente</nombre>
+      <tipo>character varying(100)</tipo>
+      <defecto>'cliente'::character varying</defecto>
+   </columna>
+   <columna>
+      <nombre>forma_pago</nombre>
+      <tipo>character varying(100)</tipo>
+      <defecto>'forma de pago'::character varying</defecto>
+   </columna>
+   <columna>
+      <nombre>vencimiento</nombre>
+      <tipo>character varying(100)</tipo>
+      <defecto>'vencimiento'::character varying</defecto>
+   </columna>
+   <columna>
+      <nombre>descripcion</nombre>
+      <tipo>character varying(100)</tipo>
+      <defecto>'descripción'::character varying</defecto>
+   </columna>
+   <columna>
+      <nombre>cant</nombre>
+      <tipo>character varying(100)</tipo>
+      <defecto>'cant'::character varying</defecto>
+   </columna>
+   <columna>
+      <nombre>precio</nombre>
+      <tipo>character varying(100)</tipo>
+      <defecto>'precio'::character varying</defecto>
+   </columna>
+   <columna>
+      <nombre>dto</nombre>
+      <tipo>character varying(100)</tipo>
+      <defecto>'dto'::character varying</defecto>
+   </columna>
+   <columna>
+      <nombre>iva</nombre>
+      <tipo>character varying(100)</tipo>
+      <defecto>'iva'::character varying</defecto>
+   </columna>
+   <columna>
+      <nombre>importe</nombre>
+      <tipo>character varying(100)</tipo>
+      <defecto>'importe'::character varying</defecto>
+   </columna>
+   <columna>
+      <nombre>importes</nombre>
+      <tipo>character varying(100)</tipo>
+      <defecto>'importes'::character varying</defecto>
+   </columna>
+   <columna>
+      <nombre>neto</nombre>
+      <tipo>character varying(100)</tipo>
+      <defecto>'neto'::character varying</defecto>
+   </columna>
+   <columna>
+      <nombre>rec_equiv</nombre>
+      <tipo>character varying(100)</tipo>
+      <defecto>'rec. equiv.'::character varying</defecto>
+   </columna>
+   <columna>
+      <nombre>irpf</nombre>
+      <tipo>character varying(100)</tipo>
+      <defecto>'irpf'::character varying</defecto>
+   </columna>
+   <columna>
+      <nombre>total</nombre>
+      <tipo>character varying(100)</tipo>
+      <defecto>'total'::character varying</defecto>
+   </columna>
+   <columna>
+      <nombre>suma_sigue</nombre>
+      <tipo>character varying(100)</tipo>
+      <defecto>'suma y sigue'::character varying</defecto>
+   </columna>
+   <columna>
+      <nombre>observaciones</nombre>
+      <tipo>character varying(100)</tipo>
+      <defecto>'observaciones'::character varying</defecto>
+   </columna>
+   <restriccion>
+      <nombre>idioma_fact_det_pkey</nombre>
+      <consulta>PRIMARY KEY (codidioma)</consulta>
+   </restriccion>
+</tabla>

@@ -65,14 +65,14 @@ class mi_factura_detallada extends fs_controller
                   'print_ref' => '1',
                   'print_dto' => '1',
                   'print_alb' => '0',
-                  'print_formapago' => '1'/*,
+                  'print_formapago' => '1',
                   'f_detallada_color' => 'azul',
                   'f_detallada_print_may_min' => FALSE,
                   'f_detallada_QRCODE' => FALSE,
                   'f_detallada_observaciones_producto' => FALSE,
                   'f_detallada_imprime_albaran' => FALSE,
                   'f_detallada_agrupa_albaranes' => FALSE,
-                  'f_detallada_maquetar_negrita' => FALSE*/
+                  'f_detallada_maquetar_negrita' => FALSE
                   //Otras opciones no se usan
               ),
               FALSE
