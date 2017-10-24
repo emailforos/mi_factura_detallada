@@ -1,0 +1,11 @@
+Añade un nuevo formato de impresión de facturas de venta basado en factura detallada.
+<ul>
+   <li>Se añade el banco de pago.</li>
+   <li>Se personaliza el aspecto.</li>
+   <li>Se añade la ref. a la descripción.</li>
+   <li>Se añaden datos varios.</li>
+   <li>Se elimina que repita el número de albarán todas las líneas.</li>
+   <li>Se añade el número de pedido del cliente.</li>
+   <li>Se elimina que repita el número de pedido del cliente en todas las líneas.</li>   
+   <li>Se mejora la línea de observaciones de la factura.
+ </ul>
