@@ -112,7 +112,7 @@ class mi_factura_detallada extends fs_controller
          }
          else
          {
-            $filename = 'Factura n'. chr(176) .' '. $this->factura->codigo . ' ' . $this->idioma->fix_html($this->factura->nombrecliente) . '.pdf';
+            $filename = 'Factura n'. chr(176) .' '. $this->factura->codigo . ' ' . utf8_decode($this->idioma->fix_html($this->factura->nombrecliente)) . '.pdf';
             $this->generar_pdf(FALSE, $filename);
          }
       }
@@ -458,6 +458,9 @@ class mi_factura_detallada extends fs_controller
                 $alb = new albaran_cliente();
                 $this->albaran = $alb->get($lineas[$i]->idalbaran);
                 $numcli=$this->albaran->numero2;
+                if ($numcli==NULL){
+                    $numcli = "S/N ";
+                }
                 if ($lineas[$i]->albaran_codigo()== NULL){
                     $nalb = "S/N ";
                 } else {
@@ -466,7 +469,7 @@ class mi_factura_detallada extends fs_controller
                 $ealb = utf8_decode($lineas[$i]->albaran_codigo());
                 $lafila = array(
                 '0' => "\n" . utf8_decode($referencia),
-                '1' => ucfirst( $this->idioma->fix_html($this->idioma->albaran)) . ': ' . $nalb . ' - '. ucfirst( $this->idioma->fix_html($this->idioma->pedido)) . ': ' . $numcli . "\n" . utf8_decode($lineas[$i]->descripcion) . $observa,
+                '1' => utf8_decode(ucfirst( $this->idioma->fix_html($this->idioma->albaran))) . ': ' . $nalb . ' - '. ucfirst( $this->idioma->fix_html($this->idioma->pedido)) . ': ' . $numcli . "\n" . utf8_decode($lineas[$i]->descripcion) . $observa,
                 '2' => "\n" . utf8_decode($cantidad),
                 '3' => "\n" . $pvpunitario,
                 '4' => "\n" . utf8_decode($dtopor),
