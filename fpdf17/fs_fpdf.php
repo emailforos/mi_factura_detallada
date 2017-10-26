@@ -129,10 +129,10 @@ class PDF_MC_Table extends FPDF {
         $cliente .= $this->fdf_codpostal . " - ";
         $cliente .= $this->fdf_ciudad . " (".$this->fdf_provincia.")\n";
         $cliente .= $this->fdf_pais . "\n";
-        $cliente .= "Tlf: " . $this->fdc_telefono1;
+        $cliente .= ucfirst( $this->idioma->fix_html($this->idioma->telefono)) . ': ' . $this->fdc_telefono1;
         if($this->fdc_telefono2) { $cliente .= " - " . $this->fdc_telefono2 . "\n"; } else { $cliente .= "\n"; }
-        if($this->fdc_fax) { $cliente .= "Fax: " . $this->fdc_fax . "\n"; }
-        if($this->fdc_email) { $cliente .= "Email: " . $this->fdc_email . "\n"; }		
+        if($this->fdc_fax) { $cliente .= ucfirst( $this->idioma->fix_html($this->idioma->fax)) . ': ' . $this->fdc_fax . "\n"; }
+        if($this->fdc_email) { $cliente .= ucfirst( $this->idioma->fix_html($this->idioma->email)) . ': '  . $this->fdc_email . "\n"; }		
         $this->addClientAdresse(utf8_decode($cliente));		
 
         // Forma de Pago de la Factura
@@ -576,11 +576,11 @@ class PDF_MC_Table extends FPDF {
         $y2  = $y1 + 2;
         $mid = ($r1 + $r2 ) / 2;
 
-        $texte  = 'Ref.' . ' N'.chr(176).': ' . $num;    
+        $texte  = '' . $num;    
         
         $this->SetFont( "Arial", "B", 15 );
         $this->SetXY($this->w,14);
-        $this->Cell(0,6,'Factura',0,0,'R');
+        $this->Cell(0,6,ucfirst( $this->idioma->fix_html($this->idioma->factura)),0,0,'R');
         $this->SetFont("Arial", "B", 12 );
         $this->SetXY($this->w,19);
         $this->Cell(0,6,$texte,0,0,'R');
@@ -1035,17 +1035,18 @@ class PDF_MC_Table extends FPDF {
         $x2  = $x1;
         $y2  = $y1+5;
         $mid = $y1 + (($y2-$y1) / 2);
-        if ($this->fdf_tipodocumento == 'Proforma Invoice' OR $this->fdf_tipodocumento == 'Quotation' OR $this->fdf_tipodocumento == 'Purchase Order'){
+        /*if ($this->fdf_tipodocumento == 'Proforma Invoice' OR $this->fdf_tipodocumento == 'Quotation' OR $this->fdf_tipodocumento == 'Purchase Order'){
             $texte  = 'Transport terms: ' . $agen;    
         }
         else if ($this->fdf_tipodocumento == 'Pedido de Compra' OR $this->fdf_tipodocumento == 'Purchase Order')
         {
             $texte  = '' . $agen;  //Mientras no esté implementado en compras -> En blanco
-        } 
+        }
         else
         {        
 	  $texte  = 'Agencia: ' . $agen;    
-        }
+        }*/
+        $texte  = ucfirst( $this->idioma->fix_html($this->idioma->transporte)) . ': ' . $agen;
         $this->SetXY($x1,$y2/*$h-41,5*/);
         $this->SetFont( "Arial","B",9);
         $this->Cell(0,5,$texte,0,0,'L');

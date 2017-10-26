@@ -58,6 +58,7 @@ class idioma_fac_det extends fs_model
    public $suma_sigue;
    public $observaciones;
    public $articulo;
+   public $transporte;
    
    public function __construct($e = FALSE)
    {
@@ -95,6 +96,7 @@ class idioma_fac_det extends fs_model
          $this->suma_sigue = $e['suma_sigue'];
          $this->observaciones = $e['observaciones'];
          $this->articulo = $e['articulo'];
+         $this->transporte = $e['transporte'];
       }
       else
       {
@@ -129,6 +131,7 @@ class idioma_fac_det extends fs_model
          $this->suma_sigue = 'suma y sigue';
          $this->observaciones = 'observaciones';
          $this->articulo = 'articulo';
+         $this->transporte = 'transporte';
       }
    }
    
@@ -196,6 +199,7 @@ class idioma_fac_det extends fs_model
       $this->vencimiento = $this->no_html($this->vencimiento);
       $this->web = $this->no_html($this->web);
       $this->articulo = $this->no_html($this->articulo);
+      $this->transporte = $this->no_html($this->transporte);
       
       if( $this->exists() )
       {
@@ -228,6 +232,7 @@ class idioma_fac_det extends fs_model
                  .", vencimiento = ".$this->var2str($this->vencimiento)
                  .", web = ".$this->var2str($this->web)
                  .", articulo = ".$this->var2str($this->articulo)
+                 .", transporte = ".$this->var2str($this->transporte)
                  ."  WHERE codidioma = ".$this->var2str($this->codidioma).";";
       }
       else
@@ -235,7 +240,7 @@ class idioma_fac_det extends fs_model
          $sql = "INSERT INTO idiomas_fac_det (codidioma,activo,albaran,nombre,cant,cliente"
                  . ",descripcion,dto,email,factura,fax,fecha,forma_pago,importe,importes,irpf,iva"
                  . ",neto,num_cliente,observaciones,pagina,pedido,precio,rec_equiv,suma_sigue,telefono"
-                 . ",total,vencimiento,web,articulo) VALUES "
+                 . ",total,vencimiento,web,articulo,transporte) VALUES "
                  . "(".$this->var2str($this->codidioma)
                  . ",".$this->var2str($this->activo)
                  . ",".$this->var2str($this->albaran)
@@ -265,7 +270,8 @@ class idioma_fac_det extends fs_model
                  . ",".$this->var2str($this->total)
                  . ",".$this->var2str($this->vencimiento)
                  . ",".$this->var2str($this->web)
-                 . ",".$this->var2str($this->articulo).");";
+                 . ",".$this->var2str($this->articulo)
+                 . ",".$this->var2str($this->transporte).");";
       }
       
       return $this->db->exec($sql);

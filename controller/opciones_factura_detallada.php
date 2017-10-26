@@ -261,6 +261,9 @@ class opciones_factura_detallada extends fs_controller
             $this->idioma->total = $_POST['total'];
             $this->idioma->vencimiento = $_POST['vencimiento'];
             $this->idioma->web = $_POST['web'];
+            $this->idioma->articulo = $_POST['articulo'];
+            $this->idioma->transporte = $_POST['transporte'];
+
             
             if( $this->idioma->save() )
             {

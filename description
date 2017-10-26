@@ -8,4 +8,5 @@ Añade un nuevo formato de impresión de facturas de venta basado en factura det
    <li>Se añade el número de pedido del cliente.</li>
    <li>Se elimina que repita el número de pedido del cliente en todas las líneas.</li>   
    <li>Se mejora la línea de observaciones de la factura.
+   <li>Se añade soporte multilenguaje como factura detallada y añadimos dos campos artículo y transporte.
  </ul>

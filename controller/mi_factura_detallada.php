@@ -466,7 +466,7 @@ class mi_factura_detallada extends fs_controller
                 $ealb = utf8_decode($lineas[$i]->albaran_codigo());
                 $lafila = array(
                 '0' => "\n" . utf8_decode($referencia),
-                '1' => "Alb.: " . $nalb . "   - Su pedido: " . $numcli . "\n" . utf8_decode($lineas[$i]->descripcion) . $observa,
+                '1' => ucfirst( $this->idioma->fix_html($this->idioma->albaran)) . ': ' . $nalb . ' - '. ucfirst( $this->idioma->fix_html($this->idioma->pedido)) . ': ' . $numcli . "\n" . utf8_decode($lineas[$i]->descripcion) . $observa,
                 '2' => "\n" . utf8_decode($cantidad),
                 '3' => "\n" . $pvpunitario,
                 '4' => "\n" . utf8_decode($dtopor),
