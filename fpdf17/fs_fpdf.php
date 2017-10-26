@@ -593,7 +593,7 @@ class PDF_MC_Table extends FPDF {
         $y1  = 17;
         $y2  = $y1 ;
         $mid = $y1 + ($y2 / 2);
-	  $texte  = 'Fecha facturaci'.chr(243).'n: ' . $date;    
+	  $texte  = ucfirst( $this->idioma->fix_html($this->idioma->factura)) . ' ' . ucfirst( $this->idioma->fix_html($this->idioma->fecha)) .': ' . $date;    
         $this->SetXY($this->w,24);
         $this->SetFont("Arial", "" , 9 );
         $this->Cell(0,4,$texte,0,0,'R');
@@ -606,7 +606,7 @@ class PDF_MC_Table extends FPDF {
         $y1  = 17;
         $y2  = $y1;
         $mid = $y1 + ($y2 / 2);
-	  $texte  = 'Fecha vencimiento: ' . $date;  
+	  $texte  = ucfirst( $this->idioma->fix_html($this->idioma->vencimiento)) .': ' . $date;  
         $this->SetXY($this->w,28);
         $this->SetFont( "Arial", "u", 9);
         $this->Cell(0,4,$texte,0,0,'R');
@@ -619,7 +619,7 @@ class PDF_MC_Table extends FPDF {
         $y1  = 17;
         $y2  = $y1;
         $mid = $y1 + ($y2 / 2);
-	  $texte  = 'C'.chr(243).'digo cliente: ' . $ref;    
+	  $texte  = ucfirst( utf8_decode($this->idioma->fix_html($this->idioma->num_cliente))) .': ' . $ref;    
         $this->SetXY($this->w,32);
         $this->SetFont( "Arial", "", 9);
         $this->Cell(0,4,$texte,0,0,'R');
@@ -671,7 +671,7 @@ class PDF_MC_Table extends FPDF {
         $this->Line($r1, $y1 + 5, $r2, $y1 + 5);
         $this->SetXY($r1 + ($r2 - $r1) / 2 - 5, $y1 + 1);      
         $this->SetFont("Arial", "B", 9);
-        $this->Cell(10, 4, "FORMA DE PAGO", 0, 0, "C");      
+        $this->Cell(10, 4, ucfirst( $this->idioma->fix_html($this->idioma->forma_pago)), 0, 0, "C");      
         $salto = 4;
         $just = 'L';
         if ($numlineas < 3)
@@ -730,7 +730,8 @@ class PDF_MC_Table extends FPDF {
         $this->SetFont( "Arial", "B", 8);
         $length = $this->GetStringWidth("Observaciones: " . $observa);
         $this->SetXY( 10, 258/*$this->h - 37.5*/ );
-        $this->Cell($length,0, "Observaciones:");
+        $texto = ucfirst( $this->idioma->fix_html($this->idioma->observaciones).': ');
+        $this->Cell($length,0, $texto);
         $this->SetXY( 10, 260/*$this->h - 37.5*/ );
         $this->SetFillColor(230,230,230);
         $this->SetFont( "Arial", "I", 8);
@@ -790,7 +791,7 @@ class PDF_MC_Table extends FPDF {
         $this->Cell(30,4, $this->fdf_divisa, 0, 0, "C");
         $this->SetFont( "Arial", "B", 8);
         $this->SetXY( $r1, $y1+7 );
-        $this->Cell(15,4, "NETO", 0, 0, "C");
+        $this->Cell(15,4, mb_strtoupper( $this->idioma->fix_html($this->idioma->neto)), 0, 0, "C");
 
         // Total Neto de la pagina
         $this->SetFont( "Arial", "", 9);
@@ -821,15 +822,15 @@ class PDF_MC_Table extends FPDF {
         $this->Line( $r1+83,  $y1+4, $r1+83, $y2);		
         $this->Line( $r1+101, $y1, $r1+101, $y2);
         $this->SetXY( $r1, $y1);
-        $this->Cell(26,4, "NETO", 0, '', "C");
+        $this->Cell(26,4, mb_strtoupper( $this->idioma->fix_html($this->idioma->neto)), 0, '', "C");
         $this->SetX( $r1+26 );
-        $this->Cell(25,4, FS_IVA, 0, '', "C");
+        $this->Cell(25,4, mb_strtoupper( $this->idioma->fix_html($this->idioma->iva)), 0, '', "C");
         $this->SetX( $r1+51 );
-        $this->Cell(25,4, "REC. EQUIV.", 0, '', "C");
+        $this->Cell(25,4, mb_strtoupper( $this->idioma->fix_html($this->idioma->rec_equiv)), 0, '', "C");
         $this->SetX( $r1+76 );
         $this->Cell(25,4, FS_IRPF, 0, '', "C");
         $this->SetX( $r1+101 );
-        $this->Cell(24,4, "IMPORTES", 0, '', "C");
+        $this->Cell(24,4, mb_strtoupper( $this->idioma->fix_html($this->idioma->importes)), 0, '', "C");
 
         $r1  = $this->w - 70;
         $r2  = $r1 + 60;

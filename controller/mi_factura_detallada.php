@@ -25,7 +25,7 @@ require_once 'plugins/mi_factura_detallada/fpdf17/fs_fpdf.php';
 
 if(!defined('FPDF_FONTPATH'))
 {
-   define('FPDF_FONTPATH', 'plugins/factura_detallada/fpdf17/font/');
+   define('FPDF_FONTPATH', 'plugins/mi_factura_detallada/fpdf17/font/');
 }
 
 require_once 'extras/phpmailer/class.phpmailer.php';
@@ -170,10 +170,10 @@ class mi_factura_detallada extends fs_controller
          }
       }
       
-      $pdf_doc->SetTitle('Factura: ' . $this->factura->codigo . " " . $this->factura->numero2);
-      $pdf_doc->SetSubject('Factura del cliente: ' . $this->factura->nombrecliente);
+      $pdf_doc->SetTitle(ucfirst($this->idioma->factura).': ' . $this->factura->codigo . " " . $this->factura->numero2);
+      $pdf_doc->SetSubject(ucfirst($this->idioma->factura). ' ' .utf8_decode($this->idioma->fix_html($this->factura->nombrecliente)));
       $pdf_doc->SetAuthor($this->empresa->nombre);
-      $pdf_doc->SetCreator('FacturaSctipts V_' . $this->version());
+      $pdf_doc->SetCreator('FacturaScripts V_' . $this->version());
       
       $pdf_doc->AliasNbPages();
       $pdf_doc->SetAutoPageBreak(true, 40);
@@ -285,12 +285,12 @@ class mi_factura_detallada extends fs_controller
       {
          $pdf_doc->Setdatoscab(
                  array(
-                     'ART',
+                     utf8_decode( mb_strtoupper($this->idioma->articulo) ),
                      utf8_decode( mb_strtoupper($this->idioma->descripcion) ),
                      utf8_decode( mb_strtoupper($this->idioma->cant) ),
                      utf8_decode( mb_strtoupper($this->idioma->precio) ),
                      utf8_decode( mb_strtoupper($this->idioma->dto) ),
-                     'NETO',
+                     utf8_decode( mb_strtoupper($this->idioma->neto) ),
                      'SUBTOTAL',
                      //utf8_decode( mb_strtoupper($this->idioma->iva) ),
                      //utf8_decode( mb_strtoupper($this->idioma->importe) ),
@@ -304,12 +304,12 @@ class mi_factura_detallada extends fs_controller
       {
          $pdf_doc->Setdatoscab(
                  array(
-                     'ART',
+                     utf8_decode( mb_strtoupper($this->idioma->articulo) ),
                      utf8_decode( mb_strtoupper($this->idioma->descripcion) ),
                      utf8_decode( mb_strtoupper($this->idioma->cant) ),
                      utf8_decode( mb_strtoupper($this->idioma->precio) ),
                      utf8_decode( mb_strtoupper($this->idioma->dto) ),
-                     'NETO',
+                     utf8_decode( mb_strtoupper($this->idioma->neto) ),
                      'SUBTOTAL',
                      //utf8_decode( mb_strtoupper($this->idioma->iva) ),
                      //utf8_decode( mb_strtoupper($this->idioma->importe) ),
