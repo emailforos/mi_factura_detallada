@@ -280,7 +280,7 @@ class mi_factura_detallada extends fs_controller
       }
            
 
-      // Cabecera Titulos Columnas * A ELIMINAR *
+      // Cabecera Titulos Columnas
       if($this->impresion['print_dto'])
       {
          $pdf_doc->Setdatoscab(
@@ -395,7 +395,7 @@ class mi_factura_detallada extends fs_controller
             /* TROZO A SANEAR */
             if($art && $this->impresion['f_detallada_observaciones_producto']) //Imprime observaciones producto
             {
-               $observa = "\n" . "Ref. " . utf8_decode($this->idioma->fix_html($art->partnumber));
+               $observa = "\n" . "Art. " . utf8_decode($this->idioma->fix_html($art->partnumber));
             }
             else
             {

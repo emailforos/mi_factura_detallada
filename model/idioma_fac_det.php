@@ -59,6 +59,12 @@ class idioma_fac_det extends fs_model
    public $observaciones;
    public $articulo;
    public $transporte;
+   public $presupuesto;
+   public $entrega;
+   public $pedido_cliente;
+   public $proforma;
+   public $compra;
+   public $proveedor;
    
    public function __construct($e = FALSE)
    {
@@ -97,6 +103,12 @@ class idioma_fac_det extends fs_model
          $this->observaciones = $e['observaciones'];
          $this->articulo = $e['articulo'];
          $this->transporte = $e['transporte'];
+         $this->presupuesto = $e['presupuesto'];
+         $this->entrega = $e['entrega'];
+         $this->pedido_cliente = $e['pedido_cliente'];         
+         $this->proforma = $e['proforma'];         
+         $this->compra = $e['compra'];         
+         $this->proveedor = $e['proveedor'];
       }
       else
       {
@@ -132,6 +144,12 @@ class idioma_fac_det extends fs_model
          $this->observaciones = 'observaciones';
          $this->articulo = 'articulo';
          $this->transporte = 'transporte';
+         $this->presupuesto = 'presupuesto';
+         $this->entrega = 'entrega';
+         $this->pedido_cliente = 'pedido_cliente';
+         $this->proforma = 'proforma';
+         $this->compra = 'compra';
+         $this->proveedor = 'proveedor';
       }
    }
    
@@ -200,6 +218,12 @@ class idioma_fac_det extends fs_model
       $this->web = $this->no_html($this->web);
       $this->articulo = $this->no_html($this->articulo);
       $this->transporte = $this->no_html($this->transporte);
+      $this->presupuesto = $this->no_html($this->presupuesto);
+      $this->entrega = $this->no_html($this->entrega);
+      $this->pedido_cliente = $this->no_html($this->pedido_cliente);
+      $this->proforma = $this->no_html($this->proforma);
+      $this->compra = $this->no_html($this->compra);
+      $this->proveedor = $this->no_html($this->proveedor);
       
       if( $this->exists() )
       {
@@ -233,6 +257,12 @@ class idioma_fac_det extends fs_model
                  .", web = ".$this->var2str($this->web)
                  .", articulo = ".$this->var2str($this->articulo)
                  .", transporte = ".$this->var2str($this->transporte)
+                 .", presupuesto = ".$this->var2str($this->presupuesto)
+                 .", entrega = ".$this->var2str($this->entrega)
+                 .", pedido_cliente = ".$this->var2str($this->pedido_cliente)
+                 .", proforma = ".$this->var2str($this->proforma)
+                 .", compra = ".$this->var2str($this->compra)
+                 .", proveedor = ".$this->var2str($this->proveedor)
                  ."  WHERE codidioma = ".$this->var2str($this->codidioma).";";
       }
       else
@@ -240,7 +270,7 @@ class idioma_fac_det extends fs_model
          $sql = "INSERT INTO idiomas_fac_det (codidioma,activo,albaran,nombre,cant,cliente"
                  . ",descripcion,dto,email,factura,fax,fecha,forma_pago,importe,importes,irpf,iva"
                  . ",neto,num_cliente,observaciones,pagina,pedido,precio,rec_equiv,suma_sigue,telefono"
-                 . ",total,vencimiento,web,articulo,transporte) VALUES "
+                 . ",total,vencimiento,web,articulo,transporte,presupuesto,entrega,pedido_cliente,proforma,compra,proveedor) VALUES "
                  . "(".$this->var2str($this->codidioma)
                  . ",".$this->var2str($this->activo)
                  . ",".$this->var2str($this->albaran)
@@ -271,7 +301,13 @@ class idioma_fac_det extends fs_model
                  . ",".$this->var2str($this->vencimiento)
                  . ",".$this->var2str($this->web)
                  . ",".$this->var2str($this->articulo)
-                 . ",".$this->var2str($this->transporte).");";
+                 . ",".$this->var2str($this->transporte)
+                 . ",".$this->var2str($this->presupuesto)
+                 . ",".$this->var2str($this->entrega)
+                 . ",".$this->var2str($this->pedido_cliente)
+                 . ",".$this->var2str($this->proforma)
+                 . ",".$this->var2str($this->compra)
+                 . ",".$this->var2str($this->proveedor).");";
       }
       
       return $this->db->exec($sql);

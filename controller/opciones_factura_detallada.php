@@ -263,6 +263,12 @@ class opciones_factura_detallada extends fs_controller
             $this->idioma->web = $_POST['web'];
             $this->idioma->articulo = $_POST['articulo'];
             $this->idioma->transporte = $_POST['transporte'];
+            $this->idioma->presupuesto = $_POST['presupuesto'];
+            $this->idioma->entrega = $_POST['entrega'];
+            $this->idioma->pedido_cliente = $_POST['pedido_cliente'];
+            $this->idioma->proforma = $_POST['proforma'];
+            $this->idioma->compra = $_POST['compra'];
+            $this->idioma->proveedor = $_POST['proveedor'];
 
             
             if( $this->idioma->save() )

@@ -159,6 +159,36 @@
       <tipo>character varying(100)</tipo>
       <defecto>'transporte'::character varying</defecto>
    </columna>
+   <columna>
+      <nombre>presupuesto</nombre>
+      <tipo>character varying(100)</tipo>
+      <defecto>'oferta'::character varying</defecto>
+   </columna>
+   <columna>
+      <nombre>entrega</nombre>
+      <tipo>character varying(100)</tipo>
+      <defecto>'fecha de entrega'::character varying</defecto>
+   </columna>
+   <columna>
+      <nombre>pedido_cliente</nombre>
+      <tipo>character varying(100)</tipo>
+      <defecto>'su pedido'::character varying</defecto>
+   </columna>
+   <columna>
+      <nombre>proforma</nombre>
+      <tipo>character varying(100)</tipo>
+      <defecto>'factura proforma'::character varying</defecto>
+   </columna>
+   <columna>
+      <nombre>compra</nombre>
+      <tipo>character varying(100)</tipo>
+      <defecto>'pedido compra'::character varying</defecto>
+   </columna>
+   <columna>
+      <nombre>proveedor</nombre>
+      <tipo>character varying(100)</tipo>
+      <defecto>'proveedor n.'::character varying</defecto>
+   </columna>                        
    <restriccion>
       <nombre>idioma_fact_det_pkey</nombre>
       <consulta>PRIMARY KEY (codidioma)</consulta>
