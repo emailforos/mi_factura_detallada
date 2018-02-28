@@ -1,0 +1,205 @@
+{include="header"}
+
+<script type="text/javascript">
+   $(document).ready(function() {
+      if(window.location.hash.substring(1) == 'idiomas')
+      {
+         $('#tab_idiomas a[href="#idiomas"]').tab('show');
+      }
+   });
+</script>
+
+<div class="container-fluid">
+   <div class="row">
+      <div class="col-sm-12">
+         <div class="page-header">
+            <h1>
+               <span class="glyphicon glyphicon-wrench"></span>
+               Opciones de factura detallada
+               <a href="{$fsc->url()}" class="btn btn-xs btn-default" title="Recargar la página">
+                  <span class="glyphicon glyphicon-refresh"></span>
+               </a>
+            </h1>
+            <p class="help-block">
+               En esta pantalla puedes configurar las opciones que mejor se ajusten a tu imagen corporativa.
+            </p>
+         </div>
+         <ul id="tab_idiomas" class="nav nav-tabs" role="tablist">
+            <li role="presentation" class="active">
+               <a href="#home" aria-controls="home" role="tab" data-toggle="tab">General</a>
+            </li>
+            <li role="presentation">
+               <a href="#idiomas" aria-controls="idiomas" role="tab" data-toggle="tab">
+                  <i class="fa fa-language" aria-hidden="true"></i> Idiomas
+               </a>
+            </li>
+         </ul>
+      </div>
+   </div>
+   <div class="tab-content">
+      <div role="tabpanel" class="tab-pane active" id="home">
+         <br/>
+         <form action="{$fsc->url()}" method="post" class="form">
+            <input type="hidden" name="factura_detallada_setup" value="TRUE"/>
+            <div class="row">
+               <div class="col-sm-4">
+                  <div class="thumbnail">
+                     <img src="{#FS_PATH#}plugins/mi_factura_detallada/view/fd.jpg" alt="fdlogo"/>
+                  </div>
+               </div>
+               <div class="col-sm-5">
+                  <div class="form-group">
+                     Color de la factura:
+                     <select class="form-control" name="color" onchange="this.form.submit()">
+                        {loop="$fsc->colores"}
+                           {if="$key==$fsc->factura_detallada_setup['f_detallada_color']"}
+                           <option value="{$key}" selected="">{$value}</option>
+                           {else}
+                           <option value="{$key}">{$value}</option>
+                           {/if}
+                        {/loop}
+                     </select>
+                  </div>
+                  <div class="form-group">
+                     <label class="checkbox-inline">
+                        {if="$fsc->factura_detallada_setup['f_detallada_print_may_min']"}
+                        <input type="checkbox" name="print_may_min" value="TRUE" checked=""/>
+                        {else}
+                        <input type="checkbox" name="print_may_min" value="TRUE"/>
+                        {/if}
+                        Mostrar mayusculas y minusculas en las descripciones.
+                     </label>
+                  </div>
+                  <div class="form-group">
+                     <label class="checkbox-inline">
+                        {if="$fsc->factura_detallada_setup['f_detallada_QRCODE']"}
+                        <input type="checkbox" name="QRCODE" value="TRUE" checked=""/>
+                        {else}
+                        <input type="checkbox" name="QRCODE" value="TRUE"/>
+                        {/if}
+                        Imprimir codigo QR en el documento.
+                     </label>
+                  </div>
+                  <div class="form-group">
+                     <label class="checkbox-inline">
+                        {if="$fsc->factura_detallada_setup['f_detallada_observaciones_producto']"}
+                        <input type="checkbox" name="observaciones_producto" value="TRUE" checked=""/>
+                        {else}
+                        <input type="checkbox" name="observaciones_producto" value="TRUE"/>
+                        {/if}
+                        Imprimir observaciones de los artículos.
+                     </label>
+                  </div>
+                  <div class="form-group">
+                     <label class="checkbox-inline">
+                        {if="$fsc->factura_detallada_setup['f_detallada_imprime_albaran']"}
+                        <input type="checkbox" name="imprime_albaran" value="TRUE" checked=""/>
+                        {else}
+                        <input type="checkbox" name="imprime_albaran" value="TRUE"/>
+                        {/if}
+                        Imprimir columna {#FS_ALBARAN#}.
+                     </label>
+                  </div>
+                  <div class="form-group">
+                     <label class="checkbox-inline">
+                        {if="$fsc->factura_detallada_setup['f_detallada_agrupa_albaranes']"}
+                        <input type="checkbox" name="agrupa_albaran" value="TRUE" checked=""/>
+                        {else}
+                        <input type="checkbox" name="agrupa_albaran" value="TRUE"/>
+                        {/if}
+                        Agrupa y detalla {#FS_ALBARAN#} en las descripciones.
+                     </label>
+                  </div>
+                  <div class="form-group">
+                     <label class="checkbox-inline">
+                        {if="$fsc->factura_detallada_setup['f_detallada_maquetar_negrita']"}
+                        <input type="checkbox" name="maquetar_negrita" value="TRUE" checked=""/>
+                        {else}
+                        <input type="checkbox" name="maquetar_negrita" value="TRUE"/>
+                        {/if}
+                        Mostrar en <b>negrita</b> si quitamos precio o cantidad en (MAQUETAR).
+                     </label>
+                  </div>
+               </div>
+               <div class="col-sm-3">
+                  {if="$fsc->factura_detallada_setup['f_detallada_color']=='personalizado'"}
+                  <div class="form-group">
+                     Color RGB:
+                     <div class="input-group">
+                        <span class="input-group-addon">R</span>
+                        <input type="number" name="color_r" class="form-control" maxlength="3" autocomplete="off" value="{$fsc->factura_detallada_setup['f_detallada_color_r']}" />
+                     </div>
+                     <div class="input-group">
+                        <span class="input-group-addon">G</span>
+                        <input type="number" name="color_g" class="form-control" maxlength="3" autocomplete="off" value="{$fsc->factura_detallada_setup['f_detallada_color_g']}" />
+                     </div>
+                     <div class="input-group">
+                        <span class="input-group-addon">B</span>
+                        <input type="number" name="color_b" class="form-control" maxlength="3" autocomplete="off" value="{$fsc->factura_detallada_setup['f_detallada_color_b']}" />
+                     </div>
+                  </div>
+                  {/if}
+                  <br/>
+                  <button class="btn btn-sm btn-primary" type="submit">
+                     <span class="glyphicon glyphicon-floppy-disk"></span>&nbsp; Guardar
+                  </button>
+               </div>
+            </div>
+         </form>
+      </div>
+      <div role="tabpanel" class="tab-pane" id="idiomas">
+         <div class="table-responsive">
+            <table class="table table-hover">
+               <thead>
+                  <tr>
+                     <th width="40"></th>
+                     <th width="100">Código</th>
+                     <th>Nombre</th>
+                  </tr>
+               </thead>
+               {loop="$fsc->idioma->all()"}
+               <tr class='clickableRow{if="$value->activo"} success{else} danger{/if}' href="{$value->url()}">
+                  <td>
+                     {if="$value->activo"}
+                     <i class="fa fa-toggle-on" aria-hidden="true"></i>
+                     {else}
+                     <i class="fa fa-toggle-off" aria-hidden="true"></i>
+                     {/if}
+                  </td>
+                  <td>{$value->codidioma}</td>
+                  <td>{$value->nombre}</td>
+               </tr>
+               {/loop}
+            </table>
+         </div>
+         <form action="{$fsc->url()}#idiomas" method="post" class="form">
+            <div class="panel panel-info">
+               <div class="panel-heading">
+                  <h3 class="panel-title">Nuevo idioma</h3>
+               </div>
+               <div class="panel-body">
+                  <div class="row">
+                     <div class="col-sm-3">
+                        <div class="form-group">
+                           <input type="text" name="codigo" class="form-control" placeholder="código" maxlength="10" autocomplete="off"/>
+                        </div>
+                     </div>
+                     <div class="col-sm-9">
+                        <div class="form-group">
+                           <input type="text" name="nombre" class="form-control" placeholder="nombre" maxlength="100" autocomplete="off"/>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <div class="panel-footer text-right">
+                  <button type="submit" class="btn btn-sm btn-primary">
+                     <span class="glyphicon glyphicon-floppy-disk"></span>&nbsp; Guardar
+                  </button>
+               </div>
+            </div>
+         </form>
+      </div>
+   </div>
+</div>
+
+{include="footer"}
