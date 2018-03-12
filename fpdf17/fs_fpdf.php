@@ -192,10 +192,13 @@ class PDF_MC_Table extends FPDF {
         if ($this->piepagina == true)
         {
             // Si existen Incluimos las Observaciones y si es factura rectificativa indicamos el nº de factura rectificada
-            if ($this->fdf_observaciones != '' OR $this->codigorect)
+            if ($this->codigorect)
             {
                 $temp = "Factura rectificativa de la factura n.: " . $this->codigorect . "\n\n" . $this->fdf_observaciones;  
                 $this->addObservaciones(substr($temp, 0, 250));
+            } else if ($this->fdf_observaciones != '') {
+                $temp = $this->fdf_observaciones; 
+                $this->addObservaciones(substr($temp, 0, 250));  
             }
 
             // Lineas de Impuestos
