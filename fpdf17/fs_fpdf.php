@@ -159,7 +159,7 @@ class PDF_MC_Table extends FPDF {
         $this->Cell(0,4, utf8_decode($this->fde_piefactura), 0, 0, "C");
 
         // Cabecera Titulos Columnas
-        $this->SetXY(10, 95);
+        $this->SetXY(18, 95);
         $this->SetFont( "Arial", "B", 9);
         for($i=0;$i<count($this->datoscab);$i++) 
         {
@@ -170,7 +170,7 @@ class PDF_MC_Table extends FPDF {
         $this->Ln();	
         $aquiY = $this->GetY() + 0.6;
         $this->SetY($aquiY);
-        $aquiX = $this->GetX();
+        $aquiX = $this->GetX()+8;
 
         $this->SetDrawColor(0,0,0);		
         $this->SetTextColor(0);
@@ -217,7 +217,7 @@ class PDF_MC_Table extends FPDF {
         $this->SetFont('Arial','',8);
 
         // Guardamos la posicion Actual
-        $x=$this->GetX();
+        $x=$this->GetX()+8;
         $y=$this->GetY();
 
         // Imprimimos solo los campos numericos
@@ -228,6 +228,7 @@ class PDF_MC_Table extends FPDF {
                 $w=$this->widths[$i];
                 if ($i == ($ultimo-1))
                 {			
+                    $this->SetXY($x,$y);
                     $x1 = $x+$w;
                     $x += $this->widths[$ultimo]+$w;
                 } else {
@@ -277,7 +278,7 @@ class PDF_MC_Table extends FPDF {
         $this->SetY(100+$h); // Y=100 en base a la altura de la cabecera
 
         // Dibujamos una Linea Gris para separar los Articulos
-        $aquiX=$this->GetX()+0.155;
+        $aquiX=$this->GetX()+0.155+8;
         $aquiY=$this->GetY();
         $this->SetDrawColor(225,225,225);		
         for($i=0;$i<count($this->datoscab);$i++)
@@ -529,30 +530,30 @@ class PDF_MC_Table extends FPDF {
     // Empresa
     function addSociete( $nom, $adresse, $email, $web )
     {
-        $x1 = 10;
+        $x1 = 18;
         $y1 = 42;
 	  $altocuadro=40;
-        $this->SetXY(10,37);
+        $this->SetXY(18,37);
         $this->SetFont('Arial','',10);
         $this->SetTextColor(0);
         $length = $this->GetStringWidth( $nom );
         $this->MultiCell(66,5,'Emisor: ');
-        $this->SetXY(10,42);
+        $this->SetXY(18,42);
         $this->SetFillColor(230,230,230);
         $this->MultiCell(82,$altocuadro,'',0,'R',1);
         $this->SetTextColor(0);
-        $this->SetXY(12,45);
+        $this->SetXY(20,45);
         $this->SetFont('Arial','B',12);
         $length = $this->GetStringWidth( $nom );
         $this->MultiCell(80,4,$nom,0,'L');
-        $this->SetXY(12,49);
+        $this->SetXY(20,49);
         $this->SetFont('Arial','',10);
         $length = $this->GetStringWidth( $adresse );
         $this->MultiCell($length, 4, $adresse);
 
         if ($email != '')
         {
-            $this->SetXY(12,68);	
+            $this->SetXY(20,68);	
             $this->SetFont('Arial','',9);
             $this->Write(5,'Email: ');
             $this->SetTextColor(0,0,255);
@@ -563,7 +564,7 @@ class PDF_MC_Table extends FPDF {
 
         if ($web != '')
         {
-            $this->SetXY(12,72);
+            $this->SetXY(20,72);
             $this->SetFont('Arial','',9);
             $this->Write(5,'Web: ');
             $this->SetTextColor(0,0,255);
@@ -740,10 +741,10 @@ class PDF_MC_Table extends FPDF {
     {
         $this->SetFont( "Arial", "B", 8);
         $length = $this->GetStringWidth("Observaciones: " . $observa);
-        $this->SetXY( 10, 258/*$this->h - 37.5*/ );
+        $this->SetXY( 18, 258/*$this->h - 37.5*/ );
         $texto = ucfirst( $this->idioma->fix_html($this->idioma->observaciones).': ');
         $this->Cell($length,0, $texto);
-        $this->SetXY( 10, 260/*$this->h - 37.5*/ );
+        $this->SetXY( 18, 260/*$this->h - 37.5*/ );
         $this->SetFillColor(230,230,230);
         $this->SetFont( "Arial", "I", 8);
         $this->MultiCell(90,4, $observa,'0','L','true');
@@ -752,7 +753,7 @@ class PDF_MC_Table extends FPDF {
     // Incluir Lineas de Iva
     function addLineasIva($datos)
     {
-        $r1  = 10;
+        $r1  = 18;
         $y1  =  227;//$this->h - 30;
 
         if ($datos) 
@@ -774,7 +775,7 @@ class PDF_MC_Table extends FPDF {
                     $this->SetFont( "Arial", "B", 6);
                     $this->SetXY( $r1, $y2 );
                     $this->Cell(8,4, $datos[$i][0], 0, '', "L");
-                    $this->Cell(18,4, $datos[$i][1], 0, '', "R");
+                    $this->Cell(17,4, $datos[$i][1], 0, '', "R");
                     $this->Cell(7,4, $datos[$i][2], 0, '', "R");
                     $this->Cell(18,4, $datos[$i][3], 0, '', "R");
                     $this->Cell(7,4, $datos[$i][4], 0, '', "R");
@@ -818,7 +819,7 @@ class PDF_MC_Table extends FPDF {
     function addTotal()
     {
         $this->SetFont( "Arial", "B", 8);
-        $r1  = 10;
+        $r1  = 18;
         $r2  = $r1 + 125;
         $y1  = 227;//$this->h - 30;
         $y2  = $y1+20;
@@ -843,8 +844,8 @@ class PDF_MC_Table extends FPDF {
         $this->SetX( $r1+101 );
         $this->Cell(24,4, mb_strtoupper( $this->idioma->fix_html($this->idioma->importes)), 0, '', "C");
 
-        $r1  = $this->w - 70;
-        $r2  = $r1 + 60;
+        $r1  = $this->w - 65;
+        $r2  = $r1 + 55;
         $y1  = 227;//$this->h - 30;
         $y2  = $y1+20;
         $this->SetLineWidth(0.15);		
@@ -852,7 +853,7 @@ class PDF_MC_Table extends FPDF {
         $this->Line( $r1+15,  $y1, $r1+15, $y2);
         $this->Line( $r1+15, $y1+4, $r2, $y1+4);
         $this->SetFont( "Arial", "B", 8);
-        $this->SetXY( $r1+22, $y1 );
+        $this->SetXY( $r1+18, $y1 );
         $this->Cell(30,4, $this->fdf_divisa, 0, 0, "C");
         $this->SetFont( "Arial", "B", 8);
         $this->SetXY( $r1, $y1+7 );
@@ -861,7 +862,7 @@ class PDF_MC_Table extends FPDF {
 
         // Total factura
         $this->SetFont( "Arial", "B", 9);
-        $this->SetXY( $r1+16, $y1+6.5 );
+        $this->SetXY( $r1+12, $y1+6.5 );
         $this->Cell(43,4, $this->fdf_numtotal, 0, 0, "C");
 
         // Total factura en texto		
@@ -1042,7 +1043,7 @@ class PDF_MC_Table extends FPDF {
     function addAgencia($agen)
     {
         $y1  = 246;
-        $x1  = 10;
+        $x1  = 18;
         $x2  = $x1;
         $y2  = $y1+5;
         $mid = $y1 + (($y2-$y1) / 2);

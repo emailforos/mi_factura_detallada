@@ -207,10 +207,10 @@ class mi_factura_detallada extends fs_controller
       if(file_exists(FS_MYDOCS . 'images/logo.png') OR file_exists(FS_MYDOCS . 'images/logo.jpg'))
       {
          $pdf_doc->fdf_verlogotipo = '1'; // 1/0 --> Mostrar Logotipo
-         $pdf_doc->fdf_Xlogotipo = '10'; // Valor X para Logotipo
+         $pdf_doc->fdf_Xlogotipo = '18'; // Valor X para Logotipo
          $pdf_doc->fdf_Ylogotipo = '10'; // Valor Y para Logotipo
          $pdf_doc->fdf_vermarcaagua = '1'; // 1/0 --> Mostrar Marca de Agua
-         $pdf_doc->fdf_Xmarcaagua = '25'; // Valor X para Marca de Agua
+         $pdf_doc->fdf_Xmarcaagua = '29'; // Valor X para Marca de Agua
          $pdf_doc->fdf_Ymarcaagua = '110'; // Valor Y para Marca de Agua
       }
       else
@@ -296,7 +296,7 @@ class mi_factura_detallada extends fs_controller
                      //utf8_decode( mb_strtoupper($this->idioma->importe) ),
                  )
          );
-         $pdf_doc->SetWidths(array(20, 88, 10, 20, 10, 20, 22));
+         $pdf_doc->SetWidths(array(20, 80, 10, 20, 10, 20, 22));
          $pdf_doc->SetAligns(array('L', 'L', 'R', 'R', 'R', 'R', 'R'));
          $pdf_doc->SetColors(array('0|0|0', '0|0|0', '0|0|0', '0|0|0', '0|0|0', '0|0|0', '0|0|0'));
       }
@@ -315,7 +315,7 @@ class mi_factura_detallada extends fs_controller
                      //utf8_decode( mb_strtoupper($this->idioma->importe) ),
                  )
          );
-         $pdf_doc->SetWidths(array(20, 88, 10, 20, 10, 20, 22));
+         $pdf_doc->SetWidths(array(20, 80, 10, 20, 10, 20, 22));
          $pdf_doc->SetAligns(array('L', 'L', 'R', 'R', 'R', 'R', 'R'));
          $pdf_doc->SetColors(array('0|0|0', '0|0|0', '0|0|0', '0|0|0', '0|0|0', '0|0|0', '0|0|0'));
       }
