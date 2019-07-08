@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 /*
  * This file is part of FacturaSctipts
  * Copyright (C) 2014  Valentín González    valengon@hotmail.com 
