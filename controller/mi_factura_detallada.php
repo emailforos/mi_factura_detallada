@@ -327,6 +327,7 @@ class mi_factura_detallada extends fs_controller
       /// Lineas de IVA
       $lineas_iva = $this->factura->get_lineas_iva();
       $totallineas = 0;
+
       if(count($lineas_iva) > 4)
       {
          $pdf_doc->fdf_lineasiva = $lineas_iva;
@@ -334,10 +335,10 @@ class mi_factura_detallada extends fs_controller
       else
       {
          $filaiva = array();
-         $total = 0;
          $i = 0;
          foreach($lineas_iva as $li)
          {
+            $total = 0;
             $i++;
             $filaiva[$i][0] = ($li->iva) ? utf8_decode($this->idioma->iva) . $li->iva : '';
             $etemp = round($li->neto,2);
