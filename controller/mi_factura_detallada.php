@@ -607,6 +607,18 @@ class mi_factura_detallada extends fs_controller
             $mail = $this->empresa->new_mail();
             $mail->FromName = $this->user->get_agente_fullname();
             $mail->addReplyTo($_POST['de'], $mail->FromName);
+            
+            /* Versión original 
+               $mail->addAddress($_POST['email'], $this->cliente->razonsocial);
+            */
+
+            /* Versión nueva */
+            $emails = explode(", ", $_POST['email']);
+
+               for($i = 0; $i < 2; $i++) {
+                   $mail->AddAddress($emails[$i]);
+                   echo $emails[$i];
+               }
 
             $mail->addAddress($_POST['email'], $this->cliente->razonsocial);
             if($_POST['email_copia'])
